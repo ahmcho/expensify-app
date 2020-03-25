@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render ExpenseListItem with fixture data 1`] = `
+<div>
+  <Link
+    to="/edit/2"
+  >
+    <h3>
+      Description: 
+      Rent
+    </h3>
+  </Link>
+  <p>
+    Amount: 
+    109500
+     
+  </p>
+  <p>
+    Created at: 
+    -345600000
+     
+  </p>
+  <p>
+    Note: 
+  </p>
+</div>
+`;
