@@ -1,17 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from './ExpenseForm';
+import DeleteModal from './DeleteModal';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpencePage extends React.Component{
+	state = {
+		isModalOpen: undefined
+	}
 	onSubmit = (expense)=>{
 		this.props.startEditExpense(this.props.expense.id, expense);
 		this.props.history.push('/');
 		console.log('updated!', expense);
 	}
 	onRemove = () => {
+		this.setState( () => ({ isModalOpen: true }));
+	}
+	handleDeleteSelectedOption = (e) => { 
+		this.setState( () => ({ isModalOpen: undefined}) )
+	}
+	handleCloseAndDelete = () => {
+		this.setState( () => ({ isModalOpen: true }));
 		this.props.startRemoveExpense({id: this.props.expense.id});
 		this.props.history.push('/');
+	}
+	handleCloseModalAndNotDelete = () => {
+		this.setState( () => ({ isModalOpen: undefined	}));
 	}
 	render(){
 		return(
@@ -28,8 +42,13 @@ export class EditExpencePage extends React.Component{
 					/>
 					<button className="button button--secondary" onClick={this.onRemove}>Remove Expense</button>
 				</div>
+				<DeleteModal 
+					isModalOpen={this.state.isModalOpen}
+					handleDeleteSelectedOption={this.handleDeleteSelectedOption}
+					handleCloseAndDelete={this.handleCloseAndDelete}
+					handleCloseModalAndNotDelete={this.handleCloseModalAndNotDelete}
+				/>
 			</div>
-			
 		)
 	}
 }

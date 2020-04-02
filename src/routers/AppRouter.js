@@ -21,6 +21,7 @@ const AppRouter = () => (
 				<PrivateRoute path="/edit/:id" component={EditExpencePage} />
 				<Route component={NotFoundPage}/>
 			</Switch>
+			
 		</div>
 	</Router>
 )
